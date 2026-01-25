@@ -1,0 +1,26 @@
+classDiagram
+%% Presentation Layer
+class PresentationLayer {
+    <<Presentation>>
+    +ServiceAPI()
+    +HTTP Endpoints()
+}
+
+%% Business Logic Layer
+class BusinessLogicLayer {
+    <<BusinessLogic>>
+    +User
+    +Place
+    +Review
+    +Amenity
+}
+
+%% Persistence Layer
+class PersistenceLayer {
+    <<Persistence>>
+    +DatabaseAccess()
+}
+
+%% Relationships
+PresentationLayer --> BusinessLogicLayer : Facade Pattern
+BusinessLogicLayer --> PersistenceLayer : Database Operations

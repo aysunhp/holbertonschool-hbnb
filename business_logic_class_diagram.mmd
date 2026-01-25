@@ -1,0 +1,54 @@
+classDiagram
+%% User class
+class User {
+    +UUID id
+    +str email
+    +str password
+    +str first_name
+    +str last_name
+    +datetime created_at
+    +datetime updated_at
+    +get_places()
+    +get_reviews()
+}
+
+%% Place class
+class Place {
+    +UUID id
+    +UUID user_id
+    +str name
+    +str description
+    +UUID city_id
+    +int number_rooms
+    +int number_bathrooms
+    +int max_guest
+    +int price_by_night
+    +datetime created_at
+    +datetime updated_at
+    +add_review()
+    +add_amenity()
+}
+
+%% Review class
+class Review {
+    +UUID id
+    +UUID user_id
+    +UUID place_id
+    +str text
+    +datetime created_at
+    +datetime updated_at
+}
+
+%% Amenity class
+class Amenity {
+    +UUID id
+    +str name
+    +datetime created_at
+    +datetime updated_at
+}
+
+%% Relationships
+User "1" --> "0..*" Place : owns
+User "1" --> "0..*" Review : writes
+Place "1" --> "0..*" Review : has
+Place "0..*" --> "0..*" Amenity : has
