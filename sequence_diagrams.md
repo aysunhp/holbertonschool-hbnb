@@ -1,0 +1,25 @@
+
+---
+
+# 4️⃣ `sequence_diagrams.md`
+
+```markdown
+# HBnB Evolution – Sequence Diagrams
+
+## 1. User Registration
+```mermaid
+sequenceDiagram
+    participant User
+    participant API
+    participant HBnBFacade
+    participant Repository
+    participant Database
+
+    User->>API: POST /users
+    API->>HBnBFacade: register_user(data)
+    HBnBFacade->>Repository: save_user(user)
+    Repository->>Database: INSERT user
+    Database-->>Repository: success
+    Repository-->>HBnBFacade: user saved
+    HBnBFacade-->>API: success
+    API-->>User: 201 Created
